@@ -1,0 +1,114 @@
+</html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Employee Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/students}">Student Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Create New Employee </h1>
+				<div class = "card-body">
+						<div class ="form-group">
+							<label> Employee First Name </label>
+							<input
+							type = "text"
+							id="firstName"
+							name = "firstName"
+							class = "form-control"
+							placeholder="Enter Employee First Name" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label> Employee Last Name </label>
+							<input
+							type = "text"
+							id="lastName"
+							name = "lastName"
+							class = "form-control"
+							placeholder="Enter Employee Last Name" 
+							/>
+						</div>
+						
+						<div class ="form-group">
+							<label> Employee Email </label>
+							<input
+							type = "text"
+							id="emailId"
+							name = "email"
+							class = "form-control"
+							placeholder="Enter Employee Email" 
+							/>
+						</div>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>				
+				</div>
+				      <script>
+         $(document).ready(function() {
+            $("button").click(function() {
+               var employeemodel =   {
+			        "firstName": "endale",
+			        "lastName": "ababi",
+			        "emailId": "endale@gmail.com"
+			    };
+			   var employeemodelform = {
+			        "firstName": $("#firstName").val(),
+			        "lastName": $("#lastName").val(),
+			        "emailId": $("#emailId").val()
+			    };
+               var requestJSON = JSON.stringify(employeemodelform);
+               $.ajax({
+                  type : "POST",
+                  url : "http://localhost:8080/api/employees",
+                  headers : {
+                     "Content-Type" : "application/json"
+                  },
+                  data : requestJSON,
+                  success : function(data) {
+                     alert("Employee Registerd Successfully");
+                     window.location.replace("http://localhost:9191/employees");
+                  },
+                  error : function(data) {
+	                alert("Failed to Register Employee");
+                  }
+               });
+            });
+         });
+      </script>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
