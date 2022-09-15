@@ -16,12 +16,7 @@ public class EmployeeController {
 	public String addEmployee() {
 	   return "add-employee";
 	}
-	
-	//this function does not have any functionality
-	@RequestMapping("/delete-employee/{id}")
-	public String deleteEmployee(@PathVariable Long id) {
-		return "redirect:/employees";
-	}
+
 	
 	@RequestMapping("/employee/detail/{id}")
 	public String employeeDetail(@PathVariable Long id) {
